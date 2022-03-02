@@ -24,6 +24,7 @@ const LED4_REG: u8 = 0x05;
 const LED5_REG: u8 = 0x06;
 const LED6_REG: u8 = 0x07;
 const LED7_REG: u8 = 0x08;
+const RESET_REG: u8 = 0x06;
 
 fn trigger_fan() -> Result<(), Box<dyn Error>> {
     println!("Testing the fan on a {}.", DeviceInfo::new()?.model());
@@ -77,8 +78,17 @@ fn manage_leds() -> Result<(), Box<dyn Error>> {
     i2c.block_write(LED4_REG, &[0xff])?;
     i2c.block_write(LED5_REG, &[0xff])?;
     i2c.block_write(LED6_REG, &[0xff])?;
+    thread::sleep(Duration::from_millis(1200));
     i2c.block_write(LED7_REG, &[0xff])?;
     thread::sleep(Duration::from_millis(2500));
+    i2c.block_write(LED1_REG, &[0x00])?;
+    i2c.block_write(LED2_REG, &[0x00])?;
+    i2c.block_write(LED3_REG, &[0x00])?;
+    i2c.block_write(LED4_REG, &[0x00])?;
+    i2c.block_write(LED5_REG, &[0x00])?;
+    i2c.block_write(LED6_REG, &[0x00])?;
+    thread::sleep(Duration::from_millis(1200));
+    i2c.block_write(LED7_REG, &[0x00])?;
 
     pin.set_high();
     Ok(())
