@@ -7,3 +7,29 @@ edition = "2021"
 
 [dependencies]
 rppal = "0.13.1"
+
+# fan binary
+[[bin]]
+    name = "fan"
+    path = "src/fan.rs"
+
+# LEDs binary
+[[bin]]
+    name = "leds"
+    path = "src/leds.rs"
+
+# client binary
+[[bin]]
+    name = "photosensor"
+    path = "src/photosensor.rs"
+
+# client binary
+[[bin]]
+    name = "tmp"
+    path = "src/temperature.rs"
+
+
+# battery binary
+[[bin]]
+    name = "battery"
+    path = "src/battery.rs"
